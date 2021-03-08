@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Beers</string>
+
+    <string name="ERROR_UNEXPECTED">Um erro inesperado ocorreu. Tente novamente mais tarde.</string>
+    <string name="ERROR_LOAD_TASK">Erro ao carregar a tarefa.</string>
+    <string name="ERROR_INTERNET_CONNECTION">Conexão à internet necessária para uso da applicação.</string>
+
+    <string name="sim">Sim</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="sair">Sair</string>
+
+</resources>
