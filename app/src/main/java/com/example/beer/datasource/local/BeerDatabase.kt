@@ -11,7 +11,7 @@ const val CURRENT_VERSION_DATABASE = 1
 
         BeerEntity::class
 
-    ], version = CURRENT_VERSION_DATABASE
+    ], version = CURRENT_VERSION_DATABASE, exportSchema = false
 )
 abstract class BeerDatabase : RoomDatabase() {
     abstract fun beerDAO(): BeerDAO

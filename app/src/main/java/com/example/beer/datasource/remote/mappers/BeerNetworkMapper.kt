@@ -28,6 +28,7 @@ constructor(
             boilVolume = volumeNetworkMapper.mapFromEntity(dataSourceModel.boilVolume),
             ingredients = ingredientsNetworkMapper.mapFromEntity(dataSourceModel.ingredients),
             contributedBy = dataSourceModel.contributedBy,
+            favorite = false
         )
     }
 

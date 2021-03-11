@@ -1,4 +1,7 @@
+package com.example.beer.datasource.local.mappers
+
 import com.example.beer.datasource.local.models.BeerEntity
+import com.example.beer.datasource.remote.models.BeerRecipeNetwork
 import com.example.beer.domain.EntityMapper
 import com.example.beer.domain.models.BeerRecipe
 import javax.inject.Inject
@@ -22,7 +25,8 @@ constructor() :
             contributedBy = "",
             description = "",
             firstBrewed = "",
-            tagline = ""
+            tagline = "",
+            favorite = true
         )
     }
 
@@ -34,6 +38,11 @@ constructor() :
             imageUrl = domainModel.imageUrl,
         )
     }
+
+    fun mapFromEntityList(entities: List<BeerEntity>): List<BeerRecipe> {
+        return entities.map { mapFromEntity(it) }
+    }
+
 }
 
 

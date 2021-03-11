@@ -1,13 +1,9 @@
 package com.example.beer.shared.listener
 
+import com.example.beer.domain.models.BeerRecipe
+
 interface BeerListener {
-
-    fun onListClick(id: Int)
-
-    fun onDeleteClick(id: Int)
-
-    fun onCompleteClick(id: Int)
-
-    fun onUndoClick(id: Int)
-
+    fun onDetails(id: Int?)
+    fun onFavorite(beerRecipe: BeerRecipe?)
+    fun onDeleteFavorite(id: Int?)
 }

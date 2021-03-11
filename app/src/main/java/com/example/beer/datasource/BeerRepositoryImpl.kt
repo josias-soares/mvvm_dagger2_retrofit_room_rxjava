@@ -1,9 +1,9 @@
 package com.example.beer.datasource
 
-import BeerEntityMapper
 import android.content.Context
 import com.example.beer.R
 import com.example.beer.datasource.local.BeerDAO
+import com.example.beer.datasource.local.mappers.BeerEntityMapper
 import com.example.beer.datasource.remote.mappers.BeerNetworkMapper
 import com.example.beer.datasource.remote.models.BeerRecipeNetwork
 import com.example.beer.datasource.remote.models.BeersRequest
@@ -20,7 +20,7 @@ import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
 class BeerRepositoryImpl @Inject constructor(
     private val context: Context,
     private val service: BeerService,
@@ -29,12 +29,19 @@ class BeerRepositoryImpl @Inject constructor(
     private val beerEntityMapper: BeerEntityMapper
 ) : BeerRepository {
     override fun favorites(listener: APIListener<List<BeerRecipe>>) {
-        TODO("Not yet implemented")
+        var list = beerDAO.getAll()
+
+        if (list.isNullOrEmpty()) {
+            list = listOf()
+        }
+
+        listener.onSuccess(beerEntityMapper.mapFromEntityList(list))
+
     }
 
     override fun listRemote(listener: APIListener<List<BeerRecipe>>) {
         if (!isConnectionAvailable(context)) {
-            listener.onFailure(context.getString(R.string.ERROR_INTERNET_CONNECTION))
+            listener.onFailure(context.getString(R.string.error_internet_connection))
             return
         }
 
@@ -56,7 +63,7 @@ class BeerRepositoryImpl @Inject constructor(
             }
 
             override fun onFailure(call: Call<List<BeerRecipeNetwork>>, t: Throwable) {
-                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+                listener.onFailure(context.getString(R.string.error_unexpected))
             }
 
         })
@@ -69,13 +76,13 @@ class BeerRepositoryImpl @Inject constructor(
 
             listener.onSuccess(true)
         } catch (e: Exception) {
-            listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            listener.onFailure(context.getString(R.string.error_unexpected))
         }
     }
 
     override fun getBeers(request: BeersRequest, listener: APIListener<List<BeerRecipe>>) {
         if (!isConnectionAvailable(context)) {
-            listener.onFailure(context.getString(R.string.ERROR_INTERNET_CONNECTION))
+            listener.onFailure(context.getString(R.string.error_internet_connection))
             return
         }
 
@@ -97,7 +104,7 @@ class BeerRepositoryImpl @Inject constructor(
             }
 
             override fun onFailure(call: Call<List<BeerRecipeNetwork>>, t: Throwable) {
-                listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+                listener.onFailure(context.getString(R.string.error_unexpected))
             }
 
         })
@@ -109,7 +116,7 @@ class BeerRepositoryImpl @Inject constructor(
 
             listener.onSuccess(true)
         } catch (e: Exception) {
-            listener.onFailure(context.getString(R.string.ERROR_UNEXPECTED))
+            listener.onFailure(context.getString(R.string.error_unexpected))
         }
     }
 }

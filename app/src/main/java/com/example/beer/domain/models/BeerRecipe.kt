@@ -14,5 +14,6 @@ data class BeerRecipe(
     val volume: Volume?,
     val boilVolume: Volume?,
     val ingredients: Ingredients?,
-    val contributedBy: String?
+    val contributedBy: String?,
+    val favorite: Boolean?
 ) : Serializable

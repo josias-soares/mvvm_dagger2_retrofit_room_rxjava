@@ -1,20 +1,24 @@
-package com.example.beer.di
+package com.example.beer.di.module
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.beer.datasource.local.BeerDAO
 import com.example.beer.datasource.local.BeerDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-class DataModule(private val application: Application) {
+@InstallIn(SingletonComponent::class)
+class DataModule {
     @Singleton
     @Provides
-    fun provideDb(): BeerDatabase {
+    fun provideDb(@ApplicationContext context: Context): BeerDatabase {
         return Room.databaseBuilder(
-            application.applicationContext,
+            context,
             BeerDatabase::class.java,
             BeerDatabase.DATABASE_NAME
         )
