@@ -1,1 +1,8 @@
-# mvvm_dagger2_retrofit_room_rxjava
+# Beers 
+
+An application MVVM deceloped  with:
+
+-> Dagger2 (Hilt)
+-> Room
+-> Retrofit
+-> Rxjava
