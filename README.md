@@ -1,6 +1,6 @@
 # Beers 
 
-An application MVVM deceloped  with:
+An application MVVM developed  with:
 
 * Dagger2 (Hilt)
 * Room
